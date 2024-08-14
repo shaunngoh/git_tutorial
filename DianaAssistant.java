@@ -1,27 +1,27 @@
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class DianaAssistant {
     public void interact() {
         System.out.println("Hello, I am Diana!\nWhat can I do for you?");
         Scanner scanner = new Scanner(System.in);
-        String[] list = new String[100];
-        int i = 0;
+        List<String> list = new ArrayList<>();
 
-        // Reading a string
-        String name = null;
-        while (!"bye".equals(name) && i < 100) {
+        String name;
+        while (true) {
             name = scanner.nextLine();
-            if (!"bye".equals(name)) {
-                System.out.println("added: " + name + "\n");
-                list[i] = name;
+            if ("bye".equals(name)) {
+                break;
             }
-            i++;
+            System.out.println("added: " + name);
+            list.add(name);
         }
-        int j = 1;
-        while (j < i) {
-            System.out.println(j + ". " + list[j - 1]);
-            j++;
+
+        for (int i = 0; i < list.size(); i++) {
+            System.out.println((i + 1) + ". " + list.get(i));
         }
         System.out.println("Bye! Hope to see you again soon.");
+        scanner.close();
     }
 }
